@@ -16,15 +16,9 @@ jib {
 	}
 	to {
 		// 사설 저장소 주소와 이미지 이름
-		image = '172.21.33.69:8405/cicd-pipeline-playground'
+		image = '172.21.33.69:8404/cicd-pipeline-playground'
 
 		tags = [buildNumber, 'latest'].unique()
-
-		// 인증 설정 (아이디/비번 직접 노출 금지!)
-		auth {
-			username = System.getenv('REGISTRY_USERNAME')
-			password = System.getenv('REGISTRY_PASSWORD')
-		}
 	}
 	container {
 		// 스프링 부트 기본 포트 설정
