@@ -17,14 +17,8 @@ jib {
 	to {
 		// 사설 저장소 주소와 이미지 이름
 		image = '172.21.33.69:8405/cicd-pipeline-playground'
-
 		tags = [buildNumber, 'latest'].unique()
 
-		// 인증 설정 (아이디/비번 직접 노출 금지!)
-		auth {
-			username = System.getenv('REGISTRY_USERNAME')
-			password = System.getenv('REGISTRY_PASSWORD')
-		}
 	}
 	container {
 		// 스프링 부트 기본 포트 설정
@@ -39,7 +33,7 @@ jib {
 // 분석에 필요한 세부 설정
 sonar {
 	properties {
-		property "sonar.projectKey", "sw_team_5" // 소나큐브에서 생성한 키
+		property "sonar.projectKey", "sw_team_5"
 		property "sonar.projectName", "sw_team_5"
 		property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
 	}
