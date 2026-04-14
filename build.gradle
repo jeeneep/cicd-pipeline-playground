@@ -7,6 +7,8 @@ plugins {
 	id 'com.google.cloud.tools.jib' version '3.4.1'
 }
 
+def buildNumber = System.getenv('BUILD_NUMBER') ?: 'latest'
+
 jib {
 	from {
 		// 베이스 이미지 (가벼운 alpine 추천)
@@ -15,9 +17,10 @@ jib {
 	to {
 		// 사설 저장소 주소와 이미지 이름
 		image = '172.21.33.69:8405/cicd-playground'
-		tags = ["${System.getenv('BUILD_NUMBER') ?: 'latest'}", 'latest']
 
-		// 인증 설정 (아이디/비번 직접 노출 금지!)
+		tags = [buildNumber, 'latest'].unique()
+
+		// 인증 설정
 		auth {
 			username = System.getenv('REGISTRY_USERNAME')
 			password = System.getenv('REGISTRY_PASSWORD')
@@ -29,6 +32,7 @@ jib {
 		// JVM 옵션 등 추가 가능
 		jvmFlags = ['-Xms512m', '-Xmx512m']
 	}
+	// HTTP 사설 저장소를 사용한다면 필수 설정!
 	allowInsecureRegistries = true
 }
 
