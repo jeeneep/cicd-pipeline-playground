@@ -16,7 +16,7 @@ jib {
 	}
 	to {
 		// 사설 저장소 주소와 이미지 이름
-		image = '172.21.33.69:8404/cicd-pipeline-playground'
+		image = 'aransword.site:8404/cicd-pipeline-playground'
 
 		tags = [buildNumber, 'latest'].unique()
 	}
@@ -26,8 +26,6 @@ jib {
 		// JVM 옵션 등 추가 가능
 		jvmFlags = ['-Xms512m', '-Xmx512m']
 	}
-	// HTTP 사설 저장소를 사용한다면 필수 설정!
-	allowInsecureRegistries = true
 }
 
 // 분석에 필요한 세부 설정

@@ -47,7 +47,7 @@ pipeline {
                     script {
                         // 이미 위 단계(build sonar)에서 테스트를 완료했으므로,
                         // jib 단계에서는 테스트를 생략하고 빌드 시간만 단축할 수 있습니다.
-                        sh './gradlew jib -x test'
+                        sh './gradlew jib -x test -Djib.to.auth.username=${REGISTRY_USERNAME} -Djib.to.auth.password=${REGISTRY_PASSWORD}'
                     }
                 }
             }
