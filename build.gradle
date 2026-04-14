@@ -1,7 +1,16 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.5'
+	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "org.sonarqube" version "5.1.0.4882"
+}
+
+// 분석에 필요한 세부 설정
+sonar {
+	properties {
+		property "sonar.projectKey", "sw_team_5" // 소나큐브에서 생성한 키
+		property "sonar.projectName", "sw_team_5"
+	}
 }
 
 group = 'com.example'
@@ -19,12 +28,15 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+
+	// 테스트는 이 starter-test 하나가 대부분의 기능을 포함합니다.
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	testCompileOnly 'org.projectlombok:lombok'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testAnnotationProcessor 'org.projectlombok:lombok'
