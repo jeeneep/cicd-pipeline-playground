@@ -20,7 +20,7 @@ jib {
 
 		tags = [buildNumber, 'latest'].unique()
 
-		// 인증 설정
+		// 인증 설정 (아이디/비번 직접 노출 금지!)
 		auth {
 			username = System.getenv('REGISTRY_USERNAME')
 			password = System.getenv('REGISTRY_PASSWORD')
