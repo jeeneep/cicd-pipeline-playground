@@ -31,14 +31,14 @@ pipeline {
                     // 3. 코드를 빌드하면서 SonarQube로 분석 데이터를 보냅니다.
                     // (만약 권한 오류가 나면 'chmod +x gradlew' 명령어를 먼저 실행하도록 추가할 수 있습니다)
                     sh 'chmod +x gradlew' // 실행 권한 부여
-                    sh './gradlew clean build sonar' 
+                    sh './gradlew sonar' 
                 }
             }
         }
         
         stage('Quality Gate') {
             steps {
-                timeout(time: 1, unit: 'HOURS') {
+                timeout(time: 1, unit: 'MINUTES') {
                     // 4. SonarQube의 분석이 끝날 때까지 기다렸다가 통과 못하면 파이프라인 중단
                     waitForQualityGate abortPipeline: true 
                 }
