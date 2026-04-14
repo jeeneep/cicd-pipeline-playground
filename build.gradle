@@ -16,7 +16,7 @@ jib {
 	}
 	to {
 		// 사설 저장소 주소와 이미지 이름
-		image = '172.21.33.69:8405/cicd-playground'
+		image = '172.21.33.69:8405/cicd-pipeline-playground'
 
 		tags = [buildNumber, 'latest'].unique()
 
