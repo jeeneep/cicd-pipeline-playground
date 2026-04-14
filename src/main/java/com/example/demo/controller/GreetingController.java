@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/greetings")
 public class GreetingController {
 
+    // 사용되는 Bean
     private final GreetingService greetingService;
 
     public GreetingController(GreetingService greetingService) {
