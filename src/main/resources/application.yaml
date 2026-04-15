@@ -1,3 +1,10 @@
 spring:
   application:
     name: cicd-pipeline-playground
+
+# 배포 스크립트가 헬스 체크를 할수 있도록
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health  # health 체크 기능을 외부에 노출

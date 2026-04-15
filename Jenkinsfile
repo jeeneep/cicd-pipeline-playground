@@ -53,6 +53,27 @@ pipeline {
             }
         }
 
+        // 3. 배포 서버(.26)로 스크립트 전송 및 실행 (주호 님이 말씀하신 핵심!)
+        stage('Remote Blue-Green Deploy') {
+            steps {
+                // 'front-com-key'는 젠킨스 Credential에 등록한 .26 서버 접속 ID여야 합니다.
+                sshagent(credentials: ['front-com-key']) {
+                    script {
+                        def remoteServer = "sw_team_5@172.21.33.26"
+                        def imageTag = "${env.BUILD_NUMBER}"
+
+                        // [과정 B] 배포 서버(.26)에 원격 접속해서 스크립트 실행 명령
+                        // 이때 주호님이 작성하신 도커 실행/헬스체크/Nginx 리로드가 .26 서버 터미널에서 실행됩니다.
+                        sh """
+                            ssh -o StrictHostKeyChecking=no ${remoteServer} '
+                                chmod +x /home/sw_team_5/deploy.sh &&
+                                /home/sw_team_5/deploy.sh ${imageTag}
+                            '
+                        """
+                }
+            }
+        }
+
         stage('Print Hello') {
             steps {
                 echo 'Build, Sonar Analysis, and Docker Push are all SUCCESSFUL!'
