@@ -22,4 +22,9 @@ public class GreetingController {
     public ResponseEntity<String> greet(@RequestParam(required = false) String name) {
         return ResponseEntity.ok(greetingService.generateGreeting(name));
     }
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(@RequestParam(required = false) String name) {
+        return ResponseEntity.ok(greetingService.generateGreeting(name));
+    }
 }
