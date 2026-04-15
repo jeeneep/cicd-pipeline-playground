@@ -73,6 +73,7 @@ pipeline {
                 }
             }
         }
+    }
 
         stage('Print Hello') {
             steps {
