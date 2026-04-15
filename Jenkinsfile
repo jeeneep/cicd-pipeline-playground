@@ -70,10 +70,10 @@ pipeline {
                                 /home/sw_team_5/deploy.sh ${imageTag}
                             '
                         """
+                    }
                 }
             }
         }
-    }
 
         stage('Print Hello') {
             steps {
